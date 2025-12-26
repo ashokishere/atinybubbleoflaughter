@@ -1,353 +1,169 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="style.css" type="text/css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRF YSS - Spiritual Resources</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Lato', sans-serif; background: #f8f9fa; color: #333; line-height: 1.8; }
+        .header { background: linear-gradient(135deg, #1a3a52 0%, #2d5a7b 100%); color: #fff; padding: 40px 20px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .header h1 { font-family: 'Merriweather', serif; font-size: 2.8em; font-weight: 400; margin-bottom: 10px; letter-spacing: 1px; }
+        .tagline { font-size: 1.1em; opacity: 0.95; font-weight: 300; margin-bottom: 30px; }
+        .search-container { max-width: 600px; margin: 30px auto 0; position: relative; }
+        .search-box { width: 100%; padding: 15px 50px 15px 20px; font-size: 1em; border: 2px solid rgba(255,255,255,0.3); border-radius: 30px; background: rgba(255,255,255,0.95); color: #333; outline: none; transition: all 0.3s ease; font-family: 'Lato', sans-serif; }
+        .search-box::placeholder { color: #999; }
+        .search-box:focus { border-color: #fff; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .search-icon { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 1.2em; color: #666; pointer-events: none; }
+        .search-results { margin-top: 15px; padding: 12px; background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); border-radius: 10px; color: #fff; text-align: center; font-size: 0.95em; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .quick-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 50px; }
+        .quick-link-card { background: #fff; padding: 25px; border-radius: 8px; text-align: center; transition: all 0.3s ease; border: 1px solid #e0e0e0; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .quick-link-card:hover { transform: translateY(-5px); box-shadow: 0 5px 20px rgba(0,0,0,0.1); border-color: #2d5a7b; }
+        .quick-link-card a { color: #1a3a52; text-decoration: none; font-weight: 600; font-size: 1.05em; }
+        .section { background: #fff; border-radius: 8px; padding: 35px; margin-bottom: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-left: 4px solid #2d5a7b; }
+        .section.hidden { display: none; }
+        .section h2 { font-family: 'Merriweather', serif; font-size: 1.8em; margin-bottom: 25px; color: #1a3a52; font-weight: 400; display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .year-badge { display: inline-block; background: #e8f4f8; color: #2d5a7b; padding: 4px 14px; border-radius: 20px; font-size: 0.55em; font-weight: 600; font-family: 'Lato', sans-serif; }
+        .chant-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+        .chant-item { background: #f8f9fa; padding: 14px 18px; border-radius: 6px; transition: all 0.3s ease; border-left: 3px solid transparent; }
+        .chant-item:hover { background: #e8f4f8; border-left-color: #2d5a7b; transform: translateX(5px); }
+        .chant-item a { color: #333; text-decoration: none; display: flex; align-items: center; gap: 10px; font-size: 0.98em; }
+        .chant-item a:hover { color: #2d5a7b; }
+        .footer { text-align: center; padding: 40px 20px; background: #1a3a52; color: #fff; margin-top: 50px; }
+        .footer p { font-style: italic; opacity: 0.9; font-size: 1.1em; }
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2em; }
+            .section { padding: 25px 20px; }
+            .section h2 { font-size: 1.5em; }
+            .chant-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-<div class="topnav" id="myTopnav">
-  <div class="dropdown">
-    <button class="dropbtn">SRF YSS
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-    
-    <a target='_blank' href='https://members.yogananda-srf.org/SRMLibrary'> Online Library</a> 
-    <a target='_blank' href='https://voluntaryleague.yogananda.org/'> VLD SRF </a> 
-    <a target='_blank' href='https://voluntaryleague.yogananda.org/'> VLD YSS</a> 
-   <a target='_blank' href='https://yoganandasite.wordpress.com/'> Daily Reads</a> 
-  
+    <div class="header">
+        <h1>SRF YSS</h1>
+        <p class="tagline">Spiritual Resources & Sacred Chants</p>
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-box" placeholder="Search for chants, meditations, or songs..." autocomplete="off">
+            <span class="search-icon">🔍</span>
+        </div>
+        <div id="searchResults" class="search-results" style="display: none;"></div>
     </div>
-  </div> 
 
-
-    <div class="dropdown">
-      <button class="dropbtn">YSS Monks 2020
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-content">
-
-  
-	<a target='_blank' href='https://www.youtube.com/live/YyIqlENd9YM?t=615&si=qnW8VbooMTCDwq9c'> “Brahmanandam” (“Hymn to Brahma”) in Sanskrit and English</a>
-  	<a target='_blank' href='https://www.youtube.com/live/YyIqlENd9YM?t=800&si=J-47p1eoHPQAQmI-'> Jai Guru</a>
-  	<a target='_blank' href='https://www.youtube.com/live/YyIqlENd9YM?t=1484&si=wkzzz1Sd0N14z5ys'> My Krishna Is Blue</a>
- 	<a target='_blank' href='https://www.youtube.com/live/YyIqlENd9YM?t=1748&si=GuZ44Q2NnkcsbK0Y'> Govinda Jai Jai, Gopala Jai Jai</a>
- 	<a target='_blank' href='https://www.youtube.com/live/YyIqlENd9YM?t=2671&si=6MixzwKF3n6-t950'> O God Beautiful</a>
- 	<a target='_blank' href='https://www.youtube.com/live/YyIqlENd9YM?t=3595&si=NKHSSq1OQac-xBnQ'> I Will Sing Thy Name</a>
- 	<a target='_blank' href='https://www.youtube.com/live/YyIqlENd9YM?t=3915&si=vSuo5NznMExXQEZi'> Mahamantra</a>
-	<a target='_blank' href='https://www.youtube.com/live/YyIqlENd9YM?t=4888&si=ZNuPLpWUy0KvyVwi'> Guru Sharanam</a>
-      </div>
-    </div> 
-	
-
-      <div class="dropdown">
-        <button class="dropbtn">SRF Nuns 2020 
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-
-        <a target='_blank' href='https://www.youtube.com/live/vW0OH3UCiRc?feature=share&t=342'> Introduction to the chantsHymn to Brahma andAmaran Guru</a> 
-        <a target='_blank' href='https://www.youtube.com/live/vW0OH3UCiRc?feature=share&t=447'>Hymn to Brahma</a> 
-        <a target='_blank' href='https://www.youtube.com/live/vW0OH3UCiRc?feature=share&t=758'>Amara Guru</a> 
-        <a target='_blank' href='https://www.youtube.com/live/vW0OH3UCiRc?feature=share&t=2977'> Inspirational Thought</a> 
-        <a target='_blank' href='https://www.youtube.com/live/vW0OH3UCiRc?feature=share&t=3026'> Search Him Out in Secret</a> 
-        <a target='_blank' href='https://www.youtube.com/live/vW0OH3UCiRc?feature=share&t=5094'> Inspirational Thought</a> 
-        <a target='_blank' href='https://www.youtube.com/live/vW0OH3UCiRc?feature=share&t=5298'> He Bhagavan</a> 
-        <a target='_blank' href='https://www.youtube.com/live/vW0OH3UCiRc?feature=share&t=5754'> Hare Krishna, Hare Rama</a> 
-        <a target='_blank' href='https://www.youtube.com/live/vW0OH3UCiRc?feature=share&t=7514'> Inspirational Thought</a> 
-        <a target='_blank' href='https://www.youtube.com/live/vW0OH3UCiRc?feature=share&t=7631'> I Give You My Soul</a> 
-        <a target='_blank' href='https://www.youtube.com/live/vW0OH3UCiRc?feature=share&t=9018'> Inspirational Thought</a> 
-        <a target='_blank' href='https://www.youtube.com/live/vW0OH3UCiRc?feature=share&t=9099'> Joy, Joy, Joy</a> 
-        <a target='_blank' href='https://www.youtube.com/live/vW0OH3UCiRc?feature=share&t=9756'> Inspirational Thought</a> 
-        <a target='_blank' href='https://www.youtube.com/live/vW0OH3UCiRc?feature=share&t=9941'> Think Ye In Thy Heart</a> 
-        <a target='_blank' href='https://www.youtube.com/live/vW0OH3UCiRc?feature=share&t=10406'> Closing Remarks</a> 
-        <a target='_blank' href='https://www.youtube.com/live/vW0OH3UCiRc?feature=share&t=10590'> Closing Prayer</a> 
-        
+    <div class="container">
+        <div class="quick-links">
+            <div class="quick-link-card"><a href="https://members.yogananda-srf.org/SRMLibrary" target="_blank">📚 Online Library</a></div>
+            <div class="quick-link-card"><a href="https://voluntaryleague.yogananda.org/" target="_blank">🤝 VLD SRF</a></div>
+            <div class="quick-link-card"><a href="https://voluntaryleague.yogananda.org/" target="_blank">🤝 VLD YSS</a></div>
+            <div class="quick-link-card"><a href="https://yoganandasite.wordpress.com/" target="_blank">📖 Daily Reads</a></div>
         </div>
-      </div> 
-   
- 
-      <div class="dropdown">
-        <button class="dropbtn">SRF Monks 2020
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-          <a target='_blank' href='https://www.youtube.com/live/ZKZcpmWYlXc?feature=share&t=0'> Introduction</a> 
-          <a target='_blank' href='https://www.youtube.com/live/ZKZcpmWYlXc?feature=share&t=156'> Opening prayer</a> 
-          <a target='_blank' href='https://www.youtube.com/live/ZKZcpmWYlXc?feature=share&t=235'>Aum Chant</a> 
-          <a target='_blank' href='https://www.youtube.com/live/ZKZcpmWYlXc?feature=share&t=405'>Jai Guru</a> 
-          <a target='_blank' href='https://www.youtube.com/live/ZKZcpmWYlXc?feature=share&t=1453'>Jaya Jaya Ma</a> 
-          <a target='_blank' href='https://www.youtube.com/live/ZKZcpmWYlXc?feature=share&t=2437'>When Thy Song Flows Through Me</a> 
-          <a target='_blank' href='https://www.youtube.com/live/ZKZcpmWYlXc?feature=share&t=2779'>Door of My Heart</a> 
-          <a target='_blank' href='https://www.youtube.com/live/ZKZcpmWYlXc?feature=share&t=3716'>When My Dreams Dream Is Done</a> 
-          <a target='_blank' href='https://www.youtube.com/live/ZKZcpmWYlXc?feature=share&t=3947'>Sri Krishna Jai Krishna</a> 
-          <a target='_blank' href='https://www.youtube.com/live/ZKZcpmWYlXc?feature=share&t=4883'>Guru-Naam Sankirtan and closing prayer</a> 
-          
+
+        <div class="section">
+            <h2>YSS Monks 2020 <span class="year-badge">2020</span></h2>
+            <div class="chant-grid">
+                <div class="chant-item"><a href="https://www.youtube.com/live/YyIqlENd9YM?t=615" target="_blank"><span>🕉️</span> Brahmanandam (Hymn to Brahma)</a></div>
+                <div class="chant-item"><a href="https://www.youtube.com/live/YyIqlENd9YM?t=800" target="_blank"><span>🙏</span> Jai Guru</a></div>
+                <div class="chant-item"><a href="https://www.youtube.com/live/YyIqlENd9YM?t=1484" target="_blank"><span>💙</span> My Krishna Is Blue</a></div>
+                <div class="chant-item"><a href="https://www.youtube.com/live/YyIqlENd9YM?t=1748" target="_blank"><span>🎵</span> Govinda Jai Jai, Gopala Jai Jai</a></div>
+                <div class="chant-item"><a href="https://www.youtube.com/live/YyIqlENd9YM?t=2671" target="_blank"><span>✨</span> O God Beautiful</a></div>
+                <div class="chant-item"><a href="https://www.youtube.com/live/YyIqlENd9YM?t=3595" target="_blank"><span>🎶</span> I Will Sing Thy Name</a></div>
+                <div class="chant-item"><a href="https://www.youtube.com/live/YyIqlENd9YM?t=3915" target="_blank"><span>📿</span> Mahamantra</a></div>
+                <div class="chant-item"><a href="https://www.youtube.com/live/YyIqlENd9YM?t=4888" target="_blank"><span>🙏</span> Guru Sharanam</a></div>
+            </div>
         </div>
-      </div> 
 
-
-      <div class="dropdown">
-        <button class="dropbtn">YSS Monks 2021 
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-        
-      
-        
-        <a target='_blank' href='https://youtu.be/Vt1VNmSDw0Y?t=276'>Hymn to Brahma (Brahmanandam)</a> 
-        <a target='_blank' href='https://youtu.be/Vt1VNmSDw0Y?t=453'>Jai Guru</a> 
-        <a target='_blank' href='https://youtu.be/Vt1VNmSDw0Y?t=1283'>O Thou Blue Sky</a> 
-        <a target='_blank' href='https://youtu.be/Vt1VNmSDw0Y?t=1600'>Brahma Guru Jai</a> 
-        <a target='_blank' href='https://youtu.be/Vt1VNmSDw0Y?t=2404'>Divine Mothers Song to the Devotee</a> 
-        <a target='_blank' href='https://youtu.be/Vt1VNmSDw0Y?t=2665'>Radhe Shyam</a> 
-        <a target='_blank' href='https://youtu.be/Vt1VNmSDw0Y?t=3505'>Thou Art My Life</a> 
-        <a target='_blank' href='https://youtu.be/Vt1VNmSDw0Y?t=3894'>Jai Govinda Jai Gopala</a> 
-        <a target='_blank' href='https://youtu.be/Vt1VNmSDw0Y?t=4828'>Jai Guru Jai Ma</a> 
-        <a target='_blank' href='https://youtu.be/Vt1VNmSDw0Y?t=5327'>Namo Namaste</a> 
-          
+        <div class="section">
+            <h2>SRF Nuns 2020 <span class="year-badge">2020</span></h2>
+            <div class="chant-grid">
+                <div class="chant-item"><a href="https://www.youtube.com/live/vW0OH3UCiRc?t=342" target="_blank"><span>📝</span> Introduction to the chants</a></div>
+                <div class="chant-item"><a href="https://www.youtube.com/live/vW0OH3UCiRc?t=447" target="_blank"><span>🕉️</span> Hymn to Brahma</a></div>
+                <div class="chant-item"><a href="https://www.youtube.com/live/vW0OH3UCiRc?t=758" target="_blank"><span>🙏</span> Amara Guru</a></div>
+                <div class="chant-item"><a href="https://www.youtube.com/live/vW0OH3UCiRc?t=3026" target="_blank"><span>🔍</span> Search Him Out in Secret</a></div>
+                <div class="chant-item"><a href="https://www.youtube.com/live/vW0OH3UCiRc?t=5298" target="_blank"><span>🙏</span> He Bhagavan</a></div>
+                <div class="chant-item"><a href="https://www.youtube.com/live/vW0OH3UCiRc?t=5754" target="_blank"><span>📿</span> Hare Krishna, Hare Rama</a></div>
+                <div class="chant-item"><a href="https://www.youtube.com/live/vW0OH3UCiRc?t=7631" target="_blank"><span>💖</span> I Give You My Soul</a></div>
+                <div class="chant-item"><a href="https://www.youtube.com/live/vW0OH3UCiRc?t=9099" target="_blank"><span>😊</span> Joy, Joy, Joy</a></div>
+                <div class="chant-item"><a href="https://www.youtube.com/live/vW0OH3UCiRc?t=9941" target="_blank"><span>💭</span> Think Ye In Thy Heart</a></div>
+                <div class="chant-item"><a href="https://www.youtube.com/live/vW0OH3UCiRc?t=10590" target="_blank"><span>🙏</span> Closing Prayer</a></div>
+            </div>
         </div>
-      </div> 
 
+        <div class="section">
+            <h2>Guided Meditation <span class="year-badge">🧘</span></h2>
+            <div class="chant-grid">
+                <div class="chant-item"><a href="https://www.youtube.com/watch?v=uCXtMNyYQMo" target="_blank"><span>🌊</span> Anchoring Yourself in Calmness (12 mins)</a></div>
+                <div class="chant-item"><a href="https://www.youtube.com/watch?v=B8XnfZ4oPCM" target="_blank"><span>🔥</span> Flame of Divine Love</a></div>
+                <div class="chant-item"><a href="https://www.youtube.com/watch?v=MJR06v8qakg" target="_blank"><span>🏛️</span> In the Temple of Silence</a></div>
+                <div class="chant-item"><a href="https://www.youtube.com/watch?v=zQ2mImvrZxg&t=961s" target="_blank"><span>☮️</span> Inner Peace (34 mins)</a></div>
+                <div class="chant-item"><a href="https://www.youtube.com/watch?v=s_xVfuDSRGg" target="_blank"><span>📞</span> Making a Soul Call</a></div>
+                <div class="chant-item"><a href="https://www.youtube.com/watch?v=6FNh1Jac9bo" target="_blank"><span>👁️</span> Transmuting Power of the Spiritual Eye</a></div>
+                <div class="chant-item"><a href="https://www.youtube.com/watch?v=rl4ULW_OgtQ" target="_blank"><span>💚</span> Yogananda's Healing Technique</a></div>
+            </div>
+        </div>
 
+        <div class="footer">
+            <p>✨ Doing small things in extraordinary ways ✨</p>
+        </div>
+    </div>
 
-      <div class="dropdown">
-        <button class="dropbtn">SRF Monks  2021
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        const sections = document.querySelectorAll('.section');
+
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
             
-        
-        <a target='_blank' href='https://youtu.be/xn55kzo23d8?t=0'>Opening welcome and prayer</a>  
-        <a target='_blank' href='https://youtu.be/xn55kzo23d8?t=146'>Aum Chant andHymn to Brahma (Brahmanandam)</a> 
-        <a target='_blank' href='https://youtu.be/xn55kzo23d8?t=406'>Give You My Soul Call</a> 
-        <a target='_blank' href='https://youtu.be/xn55kzo23d8?t=1309'>Who Is in My Temple?</a> 
-        <a target='_blank' href='https://youtu.be/xn55kzo23d8?t=3802'>What Lightning Flash</a>         
-        <a target='_blank' href='https://youtu.be/xn55kzo23d8?t=4545'>Wink Has Not Touched My Eyes</a> 
-        <a target='_blank' href='https://youtu.be/xn55kzo23d8?t=7127'>Narayan Kirtan</a> 
-        <a target='_blank' href='https://youtu.be/xn55kzo23d8?t=9691'>Madhur Madhur Naam</a> 
-        <a target='_blank' href='https://youtu.be/xn55kzo23d8?t=10628'>Namo Namaste and closing prayer</a> 
-          
-        </div>
-      </div> 
+            if (searchTerm === '') {
+                sections.forEach(section => {
+                    section.classList.remove('hidden');
+                    section.querySelectorAll('.chant-item').forEach(item => {
+                        item.style.display = 'block';
+                    });
+                });
+                searchResults.style.display = 'none';
+                return;
+            }
 
+            let matchCount = 0;
 
-
-
-      <div class="dropdown">
-        <button class="dropbtn">SRF Nuns 2021
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-              
-              <a target='_blank' href='https://youtu.be/q39wN3PxiO8?t=0'>Opening welcome and prayer</a> 
-              <a target='_blank' href='https://youtu.be/q39wN3PxiO8?t=210'>Hymn to Brahma</a> 
-              <a target='_blank' href='https://youtu.be/q39wN3PxiO8?t=543'>At Thy Feet</a> 
-              <a target='_blank' href='https://youtu.be/q39wN3PxiO8?t=900'>Sri Guru Sharanam</a> 
-              <a target='_blank' href='https://youtu.be/q39wN3PxiO8?t=3310'>Will That Day Come to Me, Mother</a> 
-              <a target='_blank' href='https://youtu.be/q39wN3PxiO8?t=3816'>Blue Lotus Feet</a> 
-              <a target='_blank' href='https://youtu.be/q39wN3PxiO8?t=6005'>My Krishna is Blue</a> 
-              <a target='_blank' href='https://youtu.be/q39wN3PxiO8?t=6419'>Govinda Jai Jai</a> 
-              <a target='_blank' href='https://youtu.be/q39wN3PxiO8?t=8408'>When Thy Song Flows Through Me</a> 
-              <a target='_blank' href='https://youtu.be/q39wN3PxiO8?t=8798'>Jai Guru Jai</a> 
-              <a target='_blank' href='https://youtu.be/q39wN3PxiO8?t=9586'>Om Shanti and closing prayer</a> 
-              <a target='_blank' href=''></a> 
-          
-        </div>
-      </div> 
-
-    <div class="dropdown">
-      <button class="dropbtn">YSS Monks 2022
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-content">
-      
-      <a target='_blank' href='https://youtu.be/GAFdymcD-Yc?t=0'> Introduction</a> 
-      <a target='_blank' href='https://youtu.be/GAFdymcD-Yc?t=216'> Brahmanandam</a> 
-      <a target='_blank' href='https://youtu.be/GAFdymcD-Yc?t=316'> I Give You My Soul Call</a> 
-      <a target='_blank' href='https://youtu.be/GAFdymcD-Yc?t=1495'> Amar Gurudeva</a> 
-      <a target='_blank' href='https://youtu.be/GAFdymcD-Yc?t=2064'> Wink Has Not Touched My Eyes</a> 
-      <a target='_blank' href='https://youtu.be/GAFdymcD-Yc?t=2642'> Sri Krishna Govind Hare Murari</a> 
-      <a target='_blank' href='https://youtu.be/GAFdymcD-Yc?t=3301'> Listen Listen Listen</a>  
-      <a target='_blank' href='https://youtu.be/GAFdymcD-Yc?t=3645'> Namo Namastestu</a>   
-        
-      </div>
-    </div> 
-
-	
-      <div class="dropdown">
-        <button class="dropbtn">SRF Monks 2022  
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-
-        <a target='_blank' href='https://www.youtube.com/live/JmVnhRu5huk?feature=share&t=0'> Prayer & Introduction</a> 
-        <a target='_blank' href='https://www.youtube.com/live/JmVnhRu5huk?feature=share&t=334'>Hymn to Brahma</a> 
-        <a target='_blank' href='https://www.youtube.com/live/JmVnhRu5huk?feature=share&t=672'>Dawn Chant</a> 
-        <a target='_blank' href='https://www.youtube.com/live/JmVnhRu5huk?feature=share&t=1470'>Govinda Jai Jai, Gopala Jai Jai</a> 
-        <a target='_blank' href='https://www.youtube.com/live/JmVnhRu5huk?feature=share&t=3594'>Blue Lotus Feet</a> 
-        <a target='_blank' href='https://www.youtube.com/live/JmVnhRu5huk?feature=share&t=4490'>Swami Ram Tirtha's Song</a> 
-        <a target='_blank' href='https://www.youtube.com/live/JmVnhRu5huk?feature=share&t=7203'>Om Kali</a> 
-        <a target='_blank' href='https://www.youtube.com/live/JmVnhRu5huk?feature=share&t=9565'>Gurudev, Mere Gurudev</a> 
-        <a target='_blank' href='https://www.youtube.com/live/JmVnhRu5huk?feature=share&t=10446'>Namo Namaste and closing prayer</a> 
-          
-        </div>
-      </div> 
-
-      <div class="dropdown">
-        <button class="dropbtn">SRF Monks 2022 
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-        
-        <a target='_blank' href='https://youtu.be/HQ15OsJDLUc?t=111'>Chanting of Aum andHymn to Brahma/Brahmanandam</a>    
-        <a target='_blank' href='https://youtu.be/HQ15OsJDLUc?t=379'>I Am Om</a> 
-        <a target='_blank' href='https://youtu.be/HQ15OsJDLUc?t=3618'>No Birth, No Death</a>  
-        <a target='_blank' href='https://youtu.be/HQ15OsJDLUc?t=4248'>Polestar of My Life</a> 
-        <a target='_blank' href='https://youtu.be/HQ15OsJDLUc?t=7285'>Wake, Yet Wake, O My Saint</a> 
-        <a target='_blank' href='https://youtu.be/HQ15OsJDLUc?t=7960'>Om Guru Yogananda</a> 
-        <a target='_blank' href='https://youtu.be/HQ15OsJDLUc?t=9854'>Hare Krishna, Hare Rama</a> 
-        <a target='_blank' href='https://youtu.be/HQ15OsJDLUc?t=10590'>Aum Shanti/Namo Namaste,Aum Chant and closing prayer</a> 
-          
-        </div>
-      </div> 
-
-      <div class="dropdown">
-        <button class="dropbtn">SRF Nuns 2022
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-        <a target='_blank' href='https://youtu.be/dmnfG6xk0yg?t=316'>Aum Chant</a> 
-        <a target='_blank' href='https://youtu.be/dmnfG6xk0yg?t=446'>Brahmanandam/Hymn to Brahma</a> 
-        <a target='_blank' href='https://youtu.be/dmnfG6xk0yg?t=678'>Jai Guru</a> 
-        <a target='_blank' href='https://youtu.be/dmnfG6xk0yg?t=1109'>Thou Art My Life</a> 
-        <a target='_blank' href='https://youtu.be/dmnfG6xk0yg?t=3303'>Spirit and Nature</a> 
-        <a target='_blank' href='https://youtu.be/dmnfG6xk0yg?t=3790'>Sri Krishna, Jai Krishna</a> 
-        <a target='_blank' href='https://youtu.be/dmnfG6xk0yg?t=5728'>Divine Mothers Song to the Devotee</a> 
-        <a target='_blank' href='https://youtu.be/dmnfG6xk0yg?t=6229'>Jaya Jaya Ma</a> 
-        <a target='_blank' href='https://youtu.be/dmnfG6xk0yg?t=7645'>Yogananda Sharanam</a> 
-        <a target='_blank' href='https://youtu.be/dmnfG6xk0yg?t=8249'>Deliver Us From Delusion</a> 
-        <a target='_blank' href='https://youtu.be/dmnfG6xk0yg?t=9577'>They Have Heard Thy Name</a> 
-        <a target='_blank' href='https://youtu.be/dmnfG6xk0yg?t=10094'>Aum Shanti</a> 
-        <a target='_blank' href='https://youtu.be/dmnfG6xk0yg?t=10540'>Closing Prayer</a> 
-        <a target='' href=''></a>
-          
-        </div>
-      </div> 
-
-      <div class="dropdown">
-        <button class="dropbtn">SRF Monks  2023 - Devananda
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-              <a target='_blank' href='https://youtu.be/zOU35-8Abv0?t=0'> Welcome, Introduction, and Opening Prayer</a> 
-              <a target='_blank' href='https://youtu.be/zOU35-8Abv0?t=294'>O Thou Blue Sky</a> 
-              <a target='_blank' href='https://youtu.be/zOU35-8Abv0?t=1204'>I Will Be Thine Always</a> 
-              <a target='_blank' href='https://youtu.be/zOU35-8Abv0?t=1565'>Jai Guru </a> 
-              <a target='_blank' href='https://youtu.be/zOU35-8Abv0?t=2726'>Polestar of My Life</a> 
-              <a target='_blank' href='https://youtu.be/zOU35-8Abv0?t=3509'>When Thy Song Flows Through Me</a> 
-              <a target='_blank' href='https://youtu.be/zOU35-8Abv0?t=3945'>Cloud-Colored Christ</a> 
-              <a target='_blank' href='https://youtu.be/zOU35-8Abv0?t=5027'>Om Guru [Invocation to the Guru</a> 
+            sections.forEach(section => {
+                let sectionHasMatch = false;
                 
-        </div>
-      </div> 
+                section.querySelectorAll('.chant-item').forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    if (text.includes(searchTerm)) {
+                        item.style.display = 'block';
+                        sectionHasMatch = true;
+                        matchCount++;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
 
-	
+                if (sectionHasMatch) {
+                    section.classList.remove('hidden');
+                } else {
+                    section.classList.add('hidden');
+                }
+            });
 
-      <div class="dropdown">
-        <button class="dropbtn">YSS Monks  2023
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-              <a target='_blank' href='https://www.youtube.com/watch?v=f3MmON2kx_M&t=1379s'> Full Video</a> 
-        </div>
-      </div> 
+            searchResults.style.display = 'block';
+            if (matchCount > 0) {
+                searchResults.innerHTML = `✨ Found ${matchCount} result${matchCount !== 1 ? 's' : ''} for "${searchTerm}"`;
+            } else {
+                searchResults.innerHTML = `❌ No results found for "${searchTerm}". Try different keywords.`;
+            }
+        });
 
-        <div class="dropdown">
-        <button class="dropbtn">2023  SRF Convocation
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content"> 
-              <a target='_blank' href='https://youtu.be/X3kJr5B4fLE?t=0'>Introduction</a>
-              <a target='_blank' href='https://youtu.be/X3kJr5B4fLE?t=176'>Hymn to Brahma / Brahmanandam</a>
-              <a target='_blank' href='https://youtu.be/X3kJr5B4fLE?t=409'>In this world Mother No one can Love me</a>
-              <a target='_blank' href='https://youtu.be/X3kJr5B4fLE?t=1142'>Receive Me on Thy Lap</a>
-              <a target='_blank' href='https://youtu.be/X3kJr5B4fLE?t=3604'>Thou Art My Life</a>  
-              <a target='_blank' href='https://youtu.be/X3kJr5B4fLE?t=4402'>Ever New Joy</a>
-              <a target='_blank' href='https://youtu.be/X3kJr5B4fLE?t=7212'>God Beautiful</a>
-              <a target='_blank' href='https://youtu.be/X3kJr5B4fLE?t=7888'>Thousands of Suns</a>
-              <a target='_blank' href='https://youtu.be/X3kJr5B4fLE?t=9996'>Om Guru, Jai Guru</a>
-
-      </div>
-      </div> 
-
-      <div class="dropdown">
-      <button class="dropbtn">Guided Meditation
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-content">
-	<a target='_blank' href='https://www.youtube.com/watch?v=uCXtMNyYQMo&list=RDCMUCqr3sDl5CzjQwOHiVLal4gQ&index=32'>Anchoring Yourself in Calmness - 12 mins</a>
-	<a target='_blank' href='https://www.youtube.com/watch?v=B8XnfZ4oPCM&list=RDCMUCqr3sDl5CzjQwOHiVLal4gQ&index=33'>Flame of Divine Love</a>
-	<a target='_blank' href='https://www.youtube.com/watch?v=MJR06v8qakg'> In the Temple of Silence</a>
-	<a target='_blank' href='https://www.youtube.com/watch?v=zQ2mImvrZxg&t=961s'> Inner Peace -34 mins</a>
-	<a target='_blank' href='https://www.youtube.com/watch?v=s_xVfuDSRGg'> Making a Soul Call</a>
-	<a target='_blank' href='https://www.youtube.com/watch?v=6FNh1Jac9bo'>Transmuting Power of the Spiritual Eye</a>
-	<a target='_blank' href='https://www.youtube.com/watch?v=rl4ULW_OgtQ'>Yogananda’s Healing Technique</a>
-      </div>
-    </div> 
-
-     <div class="dropdown">
-      <button class="dropbtn">Other Unique Songs 
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-content">
-	
-	<a target='_blank' href='https://www.youtube.com/watch?v=oArO9TxvMsc'>Bajo Mana Nishadina</a>
-	<a target='_blank' href='https://www.youtube.com/watch?v=02wik8QlWhk'>Tero Nam</a>
-	
-      </div>
-    </div> 
-    
-    
-	
-      <div class="dropdown">
-      <button class="dropbtn">Affirmation
-      <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-content">
-	<a target='_blank' href='https://www.youtube.com/live/YyIqlENd9YM?t=5260&si=ruwx_oJX-9syyhpp'> I am castled in God’s presence</a>
-	<a target='_blank' href='https://www.youtube.com/watch?v=uQFI4A5ZYTc&list=PLCqADxk3PzvhD6uSSA-9ZLNc67KBonSFf&index=9'>When I Am Only a Dream | A Poem</a>
-	<a target='_blank' href='https://www.youtube.com/watch?v=9CIbB3Rf5nY&list=PLCqADxk3PzvhD6uSSA-9ZLNc67KBonSFf&index=8'>Experiencing the Unconditional Love of God </a>
-	<a target='_blank' href='https://www.youtube.com/watch?v=Z22edyOsNQc&list=PLCqADxk3PzvhD6uSSA-9ZLNc67KBonSFf&index=10'>Scripture Of Love</a>
-	<a target='_blank' href='https://www.youtube.com/watch?v=Tw7ILifQ11U&list=RDCMUCqr3sDl5CzjQwOHiVLal4gQ&index=8'>Christ Consciousness</a>
-	<a target='_blank' href='https://youtube.com/clip/UgkxKf5RcKoj_o1z1pRDS2CTX3W5bFHM3ny1?si=PjTQpe_IsoanAkec'>In the temple of Silence- Bro Chidananda</a>
-	<a target='_blank' href='https://youtube.com/clip/UgkxMO4lYrPz4IsnwRW3lRB94uaWrVpUV5vN?si=kmtKzbFe87jMHj1x'>Breathing Technique- Bro Chidananda</a>
-	<a target='_blank' href='https://youtube.com/clip/UgkxoaB8Gg11j8BCOri0-yMIPKMjFchgY7NE?si=68uqydXayVBDZ729'>Where there is Light - Bro Chidananda</a>
-	 </div>
-    </div> 
-	
-      <div class="dropdown">
-        <button class="dropbtn">About
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-              <a target="_blank" href=''>Inspired from this statement Doing small things in extraordinary way</a>
-        </div>
-      </div> 
-
-    </div>
-
+        searchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                this.value = '';
+                this.dispatchEvent(new Event('input'));
+            }
+        });
+    </script>
 </body>
 </html>
-
- 
-
-      
-	 
-	
-    
-   
-
-   
-	
-	
-   
